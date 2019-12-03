@@ -11,3 +11,6 @@ class Expenditure(models.Model):
 
 class Meta:
     db_table = "Wallet"
+
+
+'''Here magic begins'''
