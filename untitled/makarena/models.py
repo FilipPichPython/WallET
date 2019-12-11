@@ -4,15 +4,19 @@ from django.db import models
 # Create your models here.
 class User(models.Model):
 
-    value = models.FloatField()
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     birthday = models.DateField()
+    email = models.CharField(default="", max_length=128)
+    photo = models.ImageField(null=True)
 
 
-class Funds(models.Model):
+class Fund(models.Model):
 
-    sum_of_founds = models.FloatField()
+    sum_of_founds = models.DecimalField(max_digits=20, decimal_places=4)
+
+    def sum(self):
+        return self.sum_of_founds
 
 
 class Category(models.Model):
@@ -36,11 +40,24 @@ class Income(models.Model):
     value = models.FloatField()
     sender = models.CharField(max_length=50)
     category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    description = models.TextField
+
+    def __str__(self):
+        return self.date_value_sender()
+
+    def date_value_sender(self):
+        return str(self.date) + str(self.value) + str(self.sender)
 
 
 class Expense(models.Model):
 
     date = models.DateField()
     value = models.FloatField()
-    recipient = models.CharField(max_length=50)
     category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    description = models.TextField
+
+    def __str__(self):
+        return self.date_value()
+
+    def date_value(self):
+        return str(self.date) + str(self.value)

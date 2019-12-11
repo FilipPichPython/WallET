@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-ADMINS = ['Filip', 'filip_pich@o2.pl']
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,12 +26,6 @@ SECRET_KEY = 'pch&v-^mcb$u=@)k&6gon@q(9rjib8@4abl5had7sjh%z6x0j1'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
-    }
-}
 
 # Application definition
 
@@ -84,12 +76,8 @@ WSGI_APPLICATION = 'untitled.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Wallet',
-        'USER': "admin",
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '8080',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
