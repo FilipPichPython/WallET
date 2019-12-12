@@ -31,7 +31,7 @@ class Category(models.Model):
         (6, 'Education'),
         (7, 'House')
     }
-    category = models.IntegerField(default=0, choices=CATEGORIES)
+    category = models.CharField(max_length=128, default=0, choices=CATEGORIES)
 
 
 class Income(models.Model):
@@ -40,7 +40,7 @@ class Income(models.Model):
     value = models.FloatField()
     sender = models.CharField(max_length=50)
     category = models.OneToOneField(Category, on_delete=models.CASCADE)
-    description = models.TextField
+    description = models.TextField(default="")
 
     def __str__(self):
         return self.date_value_sender()
@@ -54,7 +54,7 @@ class Expense(models.Model):
     date = models.DateField()
     value = models.FloatField()
     category = models.OneToOneField(Category, on_delete=models.CASCADE)
-    description = models.TextField
+    description = models.TextField(default="")
 
     def __str__(self):
         return self.date_value()

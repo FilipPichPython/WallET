@@ -8,9 +8,9 @@ from .models import User
 
 @admin.register(Income)
 class IncomeAdmin(admin.ModelAdmin):
-    list_display = ('date', 'value', 'sender')
-    list_filter = ('category', 'date')
-    search_fields = ('sender', 'date', 'category')
+    list_display = ('date', 'value', 'sender', 'description')
+    list_filter = ('value', 'date')
+    search_fields = ('sender', 'description')
 
 
 @admin.register(Fund)
@@ -20,9 +20,9 @@ class FundAdmin(admin.ModelAdmin):
 
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):
-    list_display = ('date', 'value')
-    list_filter = ('category', 'date')
-    search_fields = ('date', 'category')
+    list_display = ('date', 'value', 'description')
+    list_filter = ('value', 'date')
+    search_fields = ('date', 'description')
 
 
 @admin.register(User)
