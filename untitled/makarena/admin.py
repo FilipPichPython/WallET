@@ -8,8 +8,8 @@ from .models import User
 
 @admin.register(Income)
 class IncomeAdmin(admin.ModelAdmin):
-    list_display = ('date', 'value', 'sender', 'description')
-    list_filter = ('value', 'date')
+    list_display = ('date', 'value', 'sender', 'category_name', 'description')
+    list_filter = ('category_name','value', 'date')
     search_fields = ('sender', 'description')
 
 
@@ -20,8 +20,8 @@ class FundAdmin(admin.ModelAdmin):
 
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):
-    list_display = ('date', 'value', 'description')
-    list_filter = ('value', 'date')
+    list_display = ('date', 'value', 'category_name', 'description')
+    list_filter = ('category_name', 'value', 'date')
     search_fields = ('date', 'description')
 
 
@@ -31,4 +31,7 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ('name', 'surname')
 
 
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    category_name = 'category_name'
+

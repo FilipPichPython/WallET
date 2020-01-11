@@ -1,45 +1,26 @@
 from django.db import models
 
 
-# Create your models here.
 class User(models.Model):
-
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     birthday = models.DateField()
     email = models.CharField(default="", max_length=128)
-    photo = models.ImageField(null=True)
-
-
-class Fund(models.Model):
-
-    sum_of_founds = models.DecimalField(max_digits=20, decimal_places=4)
-
-    def sum(self):
-        return self.sum_of_founds
+    photo = models.ImageField(blank=True, null=True)
 
 
 class Category(models.Model):
+    category_name = models.CharField(primary_key=True, max_length=50, default="")
 
-    CATEGORIES = {
-        (0, 'Unexpected'),
-        (1, 'Car'),
-        (2, 'Shopping'),
-        (3, 'Hobbies'),
-        (4, 'Technologies'),
-        (5, 'Family'),
-        (6, 'Education'),
-        (7, 'House')
-    }
-    category = models.CharField(max_length=128, default=0, choices=CATEGORIES)
+    def __str__(self):
+        return str(self.category_name)
 
 
 class Income(models.Model):
-
     date = models.DateField()
     value = models.FloatField()
     sender = models.CharField(max_length=50)
-    category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    category_name = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     description = models.TextField(default="")
 
     def __str__(self):
@@ -50,10 +31,9 @@ class Income(models.Model):
 
 
 class Expense(models.Model):
-
     date = models.DateField()
     value = models.FloatField()
-    category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    category_name = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     description = models.TextField(default="")
 
     def __str__(self):
@@ -61,3 +41,17 @@ class Expense(models.Model):
 
     def date_value(self):
         return str(self.date) + str(self.value)
+
+
+class Fund(models.Model):
+    sum_of_founds = models.FloatField()
+
+    # TODO: zaimplementować sumowanie dodanych incomów i osobno expensów
+    def sum(self):
+        return self.sum_of_founds
+
+
+class Balance(models.Model):
+    money_balance = models.FloatField()
+
+    # TODO: zaimplementować sum_income - sum_expense
