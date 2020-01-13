@@ -46,7 +46,6 @@ class Expense(models.Model):
 class Fund(models.Model):
     sum_of_founds = models.FloatField()
 
-    # TODO: zaimplementować sumowanie dodanych incomów i osobno expensów
     def sum(self):
         return self.sum_of_founds
 
@@ -55,3 +54,4 @@ class Balance(models.Model):
     money_balance = models.FloatField()
 
     # TODO: zaimplementować sum_income - sum_expense
+    # TODO: zaimplementować sumowanie dodanych incomów i osobno expensów

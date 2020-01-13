@@ -9,7 +9,7 @@ from .models import User
 @admin.register(Income)
 class IncomeAdmin(admin.ModelAdmin):
     list_display = ('date', 'value', 'sender', 'category_name', 'description')
-    list_filter = ('category_name','value', 'date')
+    list_filter = ('category_name', 'value', 'date')
     search_fields = ('sender', 'description')
 
 
@@ -35,3 +35,4 @@ class UserAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     category_name = 'category_name'
 
+    # TODO: zaimplementowac wyswietlanie sumy_values i filtry by_date
