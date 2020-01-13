@@ -208,6 +208,16 @@ fabric.properties
 .idea/**/markdown-navigator.xml
 .idea/**/markdown-navigator/
 
+# Editor-based Rest Client
+.idea/httpRequests
+
+ENV
+venv
+env
+.idea
+
+__pycache__
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 
